@@ -2,12 +2,20 @@
 
 (function() {
 	
-	$('a.classroom-sidebar-close')[0].click()				// close annoying notes bar on right
+	$('a.classroom-sidebar-close')[0].click();				// close annoying notes bar on right
 	
-	$(document).off('keydown');
+//	$('body').off('keydown keypress keyup');
+//	$('div.left-panel').off('keypress keydown keyup')
+	$(':focus').blur();
+	$('div.videoControls *').on('focus', function(e) {
+		$(e.currentTarget).blur();
+	});
+	
+	
 	$(document).on('keydown', function (e) {
 		var button = e.which;
 		
+		console.log(button);
 		if (button == 75 || button == 32)					// 'k' or space
 			$('a.video-play-btn')[0].click();
 		else if (button == 74)								// 'j'
@@ -33,7 +41,8 @@
 			$('.video-speed-btn.plus')[0].click();
 		else if (button == 40)								// down
 			$('.video-speed-btn.minus')[0].click();	
+		
+		e.stopImmediatePropagation();
 	});
-
 })();
 
