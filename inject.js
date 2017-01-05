@@ -1,0 +1,33 @@
+// this is the code which will be injected into a given page...
+
+(function() {
+	
+	$('a.classroom-sidebar-close')[0].click()				// close annoying notes bar on right
+	
+	$(document).on('keydown', function (e) {
+		var button = e.which;
+		
+		if (button == 75 || button == 32)					// 'k' or space
+			$('a.video-play-btn')[0].click();
+		else if (button == 74)								// 'j'
+			$('.video-rewind-btn')[0].click();
+		else if (button == 190)								// Shift+>
+			$('.video-speed-btn.plus')[0].click();
+		else if (button == 188)								// Shift+<
+			$('.video-speed-btn.minus')[0].click();			
+		else if (button == 70)								// 'f'
+			$('.video-fullscreen-btn')[0].click();
+		else if (button == 77)								// 'm'
+			$('.video-volume-btn')[0].click();
+		else if (button == 27)								// escape
+			$('.exitBtn')[0].click();
+		else if (button == 39)								// right
+			$('video')[0].currentTime += 10;		
+		else if (button == 37)								// left
+			$('.video-rewind-btn')[0].click();
+//		else if (button == 38)								// up
+//		else if (button == 40)								// down
+	});
+
+})();
+
