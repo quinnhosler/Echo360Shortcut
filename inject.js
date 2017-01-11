@@ -12,12 +12,16 @@
 		e.stopImmediatePropagation();
 	})
 	
+	var video = $('video')[0];
+	$('a.video-btn.settings-btn').removeClass('settings-btn').addClass('speed').text(video.playbackRate.toFixed(1)+'x').css('font-size', '1.3em');
+	video.onratechange = function () {
+		$('a.video-btn.speed').text(video.playbackRate.toFixed(1)+'x')
+	}
+	
 	
 	$(document).on('keydown', function (e) {
 		var button = e.which;
-		var video = $('video')[0];
 		
-		console.log(button);
 		if (button == 75) {									// 'k' or space(32)
 			$('a.video-btn.play-btn')[0].click();
 		}
