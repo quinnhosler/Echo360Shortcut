@@ -3,7 +3,7 @@
 
   "name": "Echo360Shortcuts",
   "description": "A quick and dirty chrome extension that provides common Youtube like keyboard shortcuts for controlling video on Echo360.org",
-  "version": "1.1.0",
+  "version": "1.1.1",
 
   "page_action": {
     "default_icon": "icon.png",
