@@ -1,46 +1,65 @@
 // this is the code which will be injected into a given page...
 
 (function() {
-	
-	$('a.classroom-sidebar-close')[0].click();				// close annoying notes bar on right
-	
-//	$('body').off('keydown keypress keyup');
-//	$('div.left-panel').off('keypress keydown keyup')
+	$('a.disable-btn').hide();
 	$(':focus').blur();
-	$('div.videoControls *').on('focus', function(e) {
+	$('div.content *').on('focus', function(e) {
 		$(e.currentTarget).blur();
 	});
+	
+	$('div.media-screen.focused.enabled').on('click', function (e) {
+		$(e.currentTarget).removeClass('focus');
+		e.stopImmediatePropagation();
+	})
 	
 	
 	$(document).on('keydown', function (e) {
 		var button = e.which;
+		var video = $('video')[0];
 		
 		console.log(button);
-		if (button == 75 || button == 32)					// 'k' or space
-			$('a.video-play-btn')[0].click();
-		else if (button == 74)								// 'j'
-			$('.video-rewind-btn')[0].click();
-		else if (button == 190)								// Shift+>
-			$('.video-speed-btn.plus')[0].click();
-		else if (button == 188)								// Shift+<
-			$('.video-speed-btn.minus')[0].click();			
-		else if (button == 70)								// 'f'
-			$('.video-fullscreen-btn')[0].click();
-		else if (button == 77)								// 'm'
-			$('.video-volume-btn')[0].click();
-		else if (button == 27)								// escape
-			$('.exitBtn')[0].click();
-		else if (button == 39) {								// right
-			$('video')[0].pause();
-			$('video')[0].currentTime += 10;
-			$('video')[0].play();		
+		if (button == 75) {									// 'k' or space(32)
+			$('a.video-btn.play-btn')[0].click();
 		}
-		else if (button == 37)								// left
-			$('.video-rewind-btn')[0].click();
-		else if (button == 38)								// up
-			$('.video-speed-btn.plus')[0].click();
-		else if (button == 40)								// down
-			$('.video-speed-btn.minus')[0].click();	
+		else if (button == 74 || button == 37) {			// 'j' or left arrow
+			if (video.paused == true)
+				video.currentTime -= 10;
+			else {
+				video.pause();
+				video.currentTime -= 10;
+				video.play();
+			}
+		}
+		else if (button == 190 || button == 38) {			// Shift+> or up arrow
+			video.playbackRate += 0.1;
+		}
+		else if (button == 188 || button == 40)	 {			// Shift+< or down arrow
+			video.playbackRate -= 0.1;
+		}
+		else if (button == 39) {
+			video.pause();
+			video.currentTime += 10;
+			video.play();
+		}
+		else if (button == 70) {							// 'f'
+			if (document.fullscreenElement) {
+				document.webkitExitFullscreen();
+				document.mozCancelFullScreen();
+				document.msExitFullscreen();
+				document.exitFullscreen();
+			} else {
+				var div = $('div.echoPlayer')[0];
+				div.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
+				div.mozRequestFullScreen();
+				div.msRequestFullscreen();
+				div.requestFullscreen(); // standard
+			}
+		}
+		else if (button == 77) {							// 'm'
+			$('a.video-btn.volume-btn')[0].click();
+		}
+//		else if (button == 27)								// escape
+//			$('.exitBtn')[0].click();
 		
 		e.stopImmediatePropagation();
 	});
