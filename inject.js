@@ -22,16 +22,16 @@
 	$(document).on('keydown', function (e) {
 		var button = e.which;
 		
-		if (button == 75) {									// 'k' or space(32)
+		if (button == 75 || button == 32) {					// 'k' or space(32)
 			$('a.video-btn.play-btn')[0].click();
 		}
 		else if (button == 74 || button == 37) {			// 'j' or left arrow
 			if (video.paused == true)
 				video.currentTime -= 10;
 			else {
-				video.pause();
+				$('a.video-btn.play-btn')[0].click();
 				video.currentTime -= 10;
-				video.play();
+				$('a.video-btn.play-btn')[0].click();
 			}
 		}
 		else if (button == 190 || button == 38) {			// Shift+> or up arrow
@@ -40,10 +40,14 @@
 		else if (button == 188 || button == 40)	 {			// Shift+< or down arrow
 			video.playbackRate -= 0.1;
 		}
-		else if (button == 39) {
-			video.pause();
-			video.currentTime += 10;
-			video.play();
+		else if (button == 39) {							// right arrow
+			if (video.paused == true)
+				video.currentTime += 10;
+			else {
+				$('a.video-btn.play-btn')[0].click();
+				video.currentTime += 10;
+				$('a.video-btn.play-btn')[0].click();
+			}
 		}
 		else if (button == 70) {							// 'f'
 			if (document.fullscreenElement) {
@@ -62,8 +66,6 @@
 		else if (button == 77) {							// 'm'
 			$('a.video-btn.volume-btn')[0].click();
 		}
-//		else if (button == 27)								// escape
-//			$('.exitBtn')[0].click();
 		
 		e.stopImmediatePropagation();
 	});
