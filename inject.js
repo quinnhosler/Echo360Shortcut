@@ -10,12 +10,12 @@
 	$('div.media-screen.focused.enabled').on('click', function (e) {	// this is a stubborn one
 		$(e.currentTarget).removeClass('focus');
 		e.stopImmediatePropagation();
-	})
+	});
 	
 	var video = $('video')[0];								// updates control bar on speed change
 	$('a.video-btn.settings-btn').removeClass('settings-btn').addClass('speed').text(video.playbackRate.toFixed(1)+'x').css('font-size', '1.3em');
 	video.onratechange = function () {
-		$('a.video-btn.speed').text(video.playbackRate.toFixed(1)+'x')
+		$('a.video-btn.speed').text(video.playbackRate.toFixed(1)+'x');
 	}
 	
 	
@@ -28,7 +28,7 @@
 		else if (button == 74 || button == 37) {			// 'j' or left arrow
 			if (video.paused == true) {
 				video.currentTime -= 10;
-				updateProgress(video)
+				updateProgress(video);
 			} else {
 				$('a.video-btn.play-btn')[0].click();
 				video.currentTime -= 10;
@@ -78,7 +78,7 @@
 	var timer;
 	function displayControls() {
 		if (timer)
-			clearTimeout(timer)
+			clearTimeout(timer);
 		
 		$('div.stage.tile').addClass('active');
 		timer = setTimeout(function () {
@@ -95,7 +95,7 @@
 		
 		var elapsed;
 		if (video.currentTime >= 3600) {
-			elapsed = pad(video.currentTime/3600)+":"+pad((video.currentTime-3600)/60)+":"+pad(video.currentTime%60);
+			elapsed = parseInt(video.currentTime/3600)+":"+pad((video.currentTime-3600)/60)+":"+pad(video.currentTime%60);
 		} else {
 			elapsed = pad(video.currentTime/60)+":"+pad(video.currentTime%60);
 		}
@@ -103,10 +103,10 @@
 	}
 	
 	function pad(number) {
-		number = parseInt(number)
+		number = parseInt(number);
 		if (number < 10)
-			return "0"+number
-		return number+""
+			return "0"+number;
+		return number+"";
 	}
 })();
 
