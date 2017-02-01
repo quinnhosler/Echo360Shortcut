@@ -18,10 +18,15 @@
 		$('a.video-btn.speed').text(video.playbackRate.toFixed(1)+'x');
 	}
 	
+	$(document).on('click', function (e) {
+		$(document.activeElement).removeClass('focus');
+		$(document.activeElement).removeClass('focused');
+		$(document.activeElement).blur();
+	});
+	
 	
 	$(document).on('keydown', function (e) {
 		
-		$(document.activeElement).blur()
 		var button = e.which;
 		if (button == 75 || button == 32) {					// 'k' or space(32)
 			$('a.video-btn.play-btn')[0].click();
