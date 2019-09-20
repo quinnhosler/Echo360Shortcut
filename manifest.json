@@ -16,7 +16,7 @@
   "permissions": [
     "tabs",
     "https://echo360.org/",
-    "http://echo360.org/"
-    "https://echo360.org.uk/",
+    "http://echo360.org/",
+    "https://echo360.org.uk/"
   ]
 }
