@@ -1,6 +1,10 @@
 // this is the code which will be injected into a given page...
 
 (function() {
+
+	// Fix annoying scrolling issue
+	document.querySelector("html").style.overflow = "hidden";
+
 	$('a.disable-btn').hide();								// eliminates annoying button that disappears the video
 	$(':focus').blur();
 	$('div.content *').on('focus', function(e) {			// prevents any element from focusing, maintains consistency
