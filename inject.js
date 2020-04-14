@@ -39,10 +39,6 @@
 				}
 				updateProgress(video[0]);
 			} else {
-				if (video.length > 1) {
-					alert("An error in Echo360's internal code prevents smooth skipping while 2 videos are playing. Please pause videos and then skip, or click on the progress bar.");
-					return;
-				}
 				$('a.video-btn.play-btn')[0].click();
 				video[0].currentTime -= 10;
 				for (var i = 1; i < video.length; i++) {
@@ -74,10 +70,6 @@
 				}
 				updateProgress(video[0]);
 			} else {
-				if (video.length > 1) {
-					alert("An error in Echo360's internal code prevents smooth skipping while 2 videos are playing. Please pause videos and then skip, or click on the progress bar.");
-					return;
-				}
 				$('a.video-btn.play-btn')[0].click();
 				video[0].currentTime += 10;
 				for (var i = 1; i < video.length; i++) {
